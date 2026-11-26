@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="eu">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1">
+
+        <meta name="theme-color"
+              content="#211c19">
+        <meta name="apple-mobile-web-app-capable"
+              content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style"
+              content="black">
+        <meta name="apple-mobile-web-app-title"
+              content="Kromoak">
+
+        <title>Kromoak</title>
+
+        <link rel="stylesheet"
+              href="css/app.css">
+    </head>
+
+    <body>
+        <main id="app">
+
+            <section id="welcome-screen"
+                     class="screen welcome-screen">
+                <div class="welcome-content">
+
+                    <div class="brand">
+                        <span class="brand-star"
+                              aria-hidden="true">✦</span>
+                        <h1>KROMOAK</h1>
+                        <span class="brand-star"
+                              aria-hidden="true">✦</span>
+                    </div>
+
+                    <div class="brand-decoration"
+                         aria-hidden="true">
+                        <span>◆</span>
+                    </div>
+
+                    <h2>Aukeratu zure bilduma</h2>
+
+                    <div id="users-list"
+                         class="users-list"></div>
+
+                    <p id="welcome-message"
+                       class="screen-message"
+                       role="status"></p>
+
+                    <button id="retry-users-button"
+                            class="primary-button"
+                            type="button"
+                            hidden>
+                        Saiatu berriro
+                    </button>
+
+                    <p class="christmas-message">
+                        ✦ Gabonetako bilduma ✦
+                    </p>
+
+                </div>
+            </section>
+
+            <section id="collection-screen"
+                     class="screen collection-screen"
+                     hidden>
+
+                <header class="collection-header">
+
+                    <button id="back-button"
+                            class="back-button"
+                            type="button"
+                            aria-label="Itzuli">
+                        &#8592; Itzuli
+                    </button>
+
+                    <div class="collection-heading">
+                        <h2 id="collection-title"></h2>
+                        <span>Nire bilduma</span>
+                    </div>
+
+                    <div class="collection-progress">
+                        <strong id="collection-progress-text">
+                            0 / 0
+                        </strong>
+
+                        <div class="progress-track">
+                            <div id="collection-progress-bar"
+                                 class="progress-bar"></div>
+                        </div>
+                    </div>
+
+                </header>
+
+                <div id="collection-scroll"
+                     class="collection-scroll">
+
+                    <div id="collection-board"
+                         class="collection-board"></div>
+
+                </div>
+
+                <div class="collection-footer">
+
+                    <span id="collection-message"
+                          role="status"></span>
+
+                    <button id="retry-collection-button"
+                            class="small-button"
+                            type="button"
+                            hidden>
+                        Saiatu berriro
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <noscript>
+            Kromoak erabiltzeko JavaScript aktibatu behar duzu.
+        </noscript>
+
+        <script src="js/config.js"></script>
+        <script src="js/api.js"></script>
+        <script src="js/collection.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+
+</html>

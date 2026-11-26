@@ -1,0 +1,568 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background: #211c19;
+  color: #f5e6d0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button:focus {
+  outline: 2px solid #f5e6d0;
+  outline-offset: -3px;
+}
+
+button:active {
+  opacity: 0.85;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #211c19;
+  background: radial-gradient(ellipse at top, #3d2d24 0%, #211c19 65%);
+}
+
+/* Welcome screen */
+
+.welcome-screen {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  text-align: center;
+}
+
+.welcome-content {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 8vh 16px 24px;
+}
+
+.brand {
+  white-space: nowrap;
+}
+
+.brand h1 {
+  display: inline-block;
+  margin: 0;
+  color: #e1b18c;
+  font-size: 52px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-shadow: 0 3px 0 #38231a;
+  vertical-align: middle;
+}
+
+.brand-star {
+  display: inline-block;
+  color: #b77a50;
+  font-size: 25px;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+.brand-decoration {
+  position: relative;
+  width: 180px;
+  margin: 12px auto 28px;
+  height: 15px;
+  color: #b77a50;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.brand-decoration:before,
+.brand-decoration:after {
+  position: absolute;
+  top: 7px;
+  width: 43%;
+  height: 1px;
+  background: #b77a50;
+  content: '';
+}
+
+.brand-decoration:before {
+  left: 0;
+}
+
+.brand-decoration:after {
+  right: 0;
+}
+
+.welcome-content h2 {
+  margin: 0 0 28px;
+  font-size: 23px;
+  font-weight: normal;
+}
+
+.users-list {
+  width: 100%;
+  text-align: center;
+}
+
+.user-button {
+  display: inline-block;
+  width: 44%;
+  max-width: 250px;
+  min-height: 210px;
+  margin: 5px 2%;
+  padding: 22px 16px;
+  border: 2px solid #b77a50;
+  border-radius: 14px;
+  text-align: center;
+  vertical-align: top;
+  white-space: normal;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.user-green {
+  background: #294a39;
+  background: linear-gradient(to bottom, #365d48, #203b2e);
+}
+
+.user-red {
+  background: #842e32;
+  background: linear-gradient(to bottom, #963b3f, #662429);
+}
+
+.user-symbol {
+  display: block;
+  margin-bottom: 8px;
+  color: #e1b18c;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.user-name {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 32px;
+  font-weight: bold;
+  overflow-wrap: break-word;
+}
+
+.user-progress {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.user-action {
+  display: block;
+  margin-top: 15px;
+  color: #f5e6d0;
+  font-size: 14px;
+}
+
+.christmas-message {
+  margin: 32px 0 0;
+  color: #bda38d;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.screen-message {
+  margin: 20px 0;
+  color: #e1b18c;
+  font-size: 16px;
+}
+
+.screen-message:empty {
+  display: none;
+}
+
+/* Shared buttons and progress bars */
+
+.primary-button,
+.small-button {
+  border: 1px solid #b77a50;
+  border-radius: 7px;
+  background: #765036;
+  color: #f5e6d0;
+  font-weight: bold;
+}
+
+.primary-button {
+  padding: 12px 20px;
+  font-size: 16px;
+}
+
+.small-button {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.progress-track {
+  display: block;
+  width: 100%;
+  height: 7px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.progress-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 5px;
+  background: #d9a57d;
+  -webkit-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+}
+
+/* Collection header */
+
+.collection-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 78px;
+  border-bottom: 1px solid #78543d;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.back-button {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  height: 40px;
+  padding: 0 12px;
+  background: transparent;
+  border: 1px solid #78543d;
+  border-radius: 7px;
+  color: #e1b18c;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.collection-heading {
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  right: 100px;
+  text-align: center;
+}
+
+.collection-heading h2 {
+  margin: 0;
+  color: #f5e6d0;
+  font-size: 27px;
+  line-height: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collection-heading span {
+  color: #bda38d;
+  font-size: 13px;
+}
+
+.collection-progress {
+  position: absolute;
+  top: 19px;
+  right: 12px;
+  width: 76px;
+  text-align: center;
+}
+
+.collection-progress strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #e1b18c;
+  font-size: 17px;
+}
+
+/* Scrollable collection */
+
+.collection-scroll {
+  position: absolute;
+  top: 82px;
+  right: 0;
+  bottom: 32px;
+  left: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.collection-board {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.collection-row {
+  width: 100%;
+  font-size: 0;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.card-tile {
+  position: relative;
+  display: inline-block;
+  margin: 4px;
+  padding: 0;
+  border: 2px solid #b77a50;
+  border-radius: 8px;
+  overflow: hidden;
+  vertical-align: top;
+  text-align: center;
+}
+
+/* Locked cards */
+
+.card-locked {
+  background: #38281f;
+  background: linear-gradient(145deg, #493326, #2b211c);
+  box-shadow: inset 0 0 0 2px #60402e;
+}
+
+.card-number {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  color: #e1b18c;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+.card-question {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  color: #b77a50;
+  font-size: 52px;
+  font-size: 7vh;
+  font-weight: bold;
+  line-height: 1;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-shadow: 0 2px 1px #17100d;
+}
+
+.card-unlock-button {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  left: 5px;
+  padding: 9px 1px;
+  border: 1px solid #bd8a61;
+  border-radius: 5px;
+  background: #765036;
+  background: linear-gradient(to bottom, #996643, #765036);
+  color: #f5e6d0;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 14px;
+  overflow: hidden;
+}
+
+/* Unlocked cards */
+
+.card-unlocked {
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.card-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+
+.card-image-fallback {
+  display: block;
+  padding: 12px 5px;
+  color: #e1b18c;
+  font-size: 14px;
+  white-space: normal;
+}
+
+/* Collection footer */
+
+.collection-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 30px;
+  padding: 4px 10px;
+  color: #bda38d;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+}
+
+/* Small screens */
+
+@media (max-width: 600px) {
+  .brand h1 {
+    font-size: 36px;
+    letter-spacing: 3px;
+  }
+
+  .brand-star {
+    font-size: 18px;
+    margin: 0 4px;
+  }
+
+  .welcome-content h2 {
+    font-size: 20px;
+  }
+
+  .user-button {
+    padding: 18px 10px;
+    min-height: 185px;
+  }
+
+  .user-name {
+    font-size: 26px;
+  }
+
+  .collection-heading h2 {
+    font-size: 22px;
+  }
+}
+
+/* Short landscape screens */
+
+@media (max-height: 500px) {
+  .welcome-content {
+    padding-top: 15px;
+  }
+
+  .brand h1 {
+    font-size: 34px;
+  }
+
+  .brand-decoration {
+    margin: 6px auto 10px;
+  }
+
+  .welcome-content h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .user-button {
+    min-height: 135px;
+    padding: 10px;
+  }
+
+  .user-symbol {
+    font-size: 24px;
+  }
+
+  .user-name {
+    margin-bottom: 5px;
+    font-size: 23px;
+  }
+
+  .user-action {
+    margin-top: 6px;
+  }
+
+  .christmas-message {
+    margin-top: 15px;
+  }
+
+  .collection-header {
+    height: 54px;
+  }
+
+  .back-button {
+    top: 7px;
+    height: 38px;
+  }
+
+  .collection-heading {
+    top: 2px;
+  }
+
+  .collection-heading h2 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+
+  .collection-progress {
+    top: 8px;
+  }
+
+  .collection-scroll {
+    top: 58px;
+    bottom: 24px;
+  }
+
+  .collection-footer {
+    height: 24px;
+    padding: 1px 6px;
+  }
+
+  .card-number {
+    top: 2px;
+    font-size: 11px;
+    line-height: 12px;
+  }
+
+  .card-question {
+    font-size: 28px;
+  }
+
+  .card-unlock-button {
+    right: 1px;
+    bottom: 2px;
+    left: 1px;
+    padding: 3px 0;
+    font-size: 9px;
+    line-height: 10px;
+  }
+}

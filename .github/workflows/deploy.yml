@@ -1,0 +1,46 @@
+name: Test and deploy Kromoak to Plesk
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-xake
+  cancel-in-progress: false
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+
+      - name: Run all tests
+        run: npm test
+
+      - name: Validate static files
+        shell: bash
+        run: |
+          test -f index.html || exit 1
+
+      - name: Upload and deploy via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: 'index.html,apple-touch-icon.png,apple-touch-icon-precomposed.png,apple-touch-icon-152x152.png,assets,css,js,lib,i18n'
+          target: ${{ secrets.REMOTE_PUBLIC_DIR }}
+          overwrite: true
+          rm: false
