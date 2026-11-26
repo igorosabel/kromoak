@@ -33,20 +33,35 @@ jobs:
           test -f js/keypad.js
           test -f js/modal.js
           test -f js/app.js
+          test -f js/pwa.js
+
           test -f favicon.ico
           test -f robots.txt
+          test -f manifest.json
+          test -f sw.js
+
+          test -f apple-touch-icon.png
+          test -f apple-touch-icon-152x152.png
+          test -f apple-touch-icon-precomposed.png
+          test -f img/icons/icon-192.png
+          test -f img/icons/icon-512.png
 
       - name: Validate ES5 compatibility
         shell: bash
         run: |
           set -e
 
-          for file in js/*.js; do
+          for file in js/*.js sw.js; do
             echo "Checking $file"
 
             npx --yes --package=acorn@8.19.0 \
               acorn --ecma5 --silent "$file"
           done
+
+      - name: Validate web app manifest
+        shell: bash
+        run: |
+          python3 -m json.tool manifest.json > /dev/null
 
       - name: Upload and deploy via SCP
         uses: appleboy/scp-action@v0.1.7
@@ -54,7 +69,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "index.html,favicon.ico,robots.txt,css,js"
+          source: "index.html,favicon.ico,robots.txt,manifest.json,sw.js,apple-touch-icon*.png,css,js,img"
           target: ${{ secrets.REMOTE_PUBLIC_DIR }}
           overwrite: true
           rm: false
