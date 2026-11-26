@@ -1,11 +1,11 @@
 (function (window) {
-  'use strict';
+  "use strict";
 
   window.Kromoak = window.Kromoak || {};
 
   window.Kromoak.config = {
-    apiUrl: 'https://apikromoak.osumi.es',
+    apiUrl: "https://apikromoak.osumi.es",
     requestTimeout: 15000,
-    collectionRows: 3,
+    collectionRows: 3
   };
 })(window);

@@ -1,5 +1,5 @@
 (function (app) {
-  'use strict';
+  "use strict";
 
   /**
    * Send an asynchronous HTTP request to the API.
@@ -32,10 +32,10 @@
 
     xhr.timeout = app.config.requestTimeout;
 
-    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader("Accept", "application/json");
 
     if (data !== null) {
-      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader("Content-Type", "application/json");
     }
 
     xhr.onreadystatechange = function () {
@@ -50,10 +50,10 @@
       } catch (error) {
         finish(
           {
-            type: 'invalid_response',
-            status: xhr.status,
+            type: "invalid_response",
+            status: xhr.status
           },
-          null,
+          null
         );
 
         return;
@@ -66,38 +66,38 @@
 
       finish(
         {
-          type: 'http',
+          type: "http",
           status: xhr.status,
-          data: response,
+          data: response
         },
-        null,
+        null
       );
     };
 
     xhr.onerror = function () {
       finish(
         {
-          type: 'network',
+          type: "network"
         },
-        null,
+        null
       );
     };
 
     xhr.ontimeout = function () {
       finish(
         {
-          type: 'timeout',
+          type: "timeout"
         },
-        null,
+        null
       );
     };
 
     xhr.onabort = function () {
       finish(
         {
-          type: 'aborted',
+          type: "aborted"
         },
-        null,
+        null
       );
     };
 
@@ -111,7 +111,7 @@
      * @param {Function} callback Completion callback.
      */
     getUsers: function (callback) {
-      request('GET', '/users', null, callback);
+      request("GET", "/users", null, callback);
     },
 
     /**
@@ -121,7 +121,7 @@
      * @param {Function} callback Completion callback.
      */
     getCollection: function (userId, callback) {
-      request('GET', '/users/' + userId + '/cards', null, callback);
+      request("GET", "/users/" + userId + "/cards", null, callback);
     },
 
     /**
@@ -134,12 +134,12 @@
      */
     unlockCard: function (userId, cardId, code, callback) {
       request(
-        'POST',
-        '/users/' + userId + '/cards/' + cardId + '/unlock',
+        "POST",
+        "/users/" + userId + "/cards/" + cardId + "/unlock",
         {
-          code: code,
+          code: code
         },
-        callback,
+        callback
       );
     },
 
@@ -151,6 +151,6 @@
      */
     getImageUrl: function (path) {
       return app.config.apiUrl + path;
-    },
+    }
   };
 })(window.Kromoak);

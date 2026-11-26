@@ -1,9 +1,9 @@
 (function (app) {
-  'use strict';
+  "use strict";
 
-  var scroll = document.getElementById('collection-scroll');
+  var scroll = document.getElementById("collection-scroll");
 
-  var board = document.getElementById('collection-board');
+  var board = document.getElementById("collection-board");
 
   var cards = [];
   var columns = 0;
@@ -20,9 +20,9 @@
   function createElement(tag, className, text) {
     var element = document.createElement(tag);
 
-    element.className = className || '';
+    element.className = className || "";
 
-    if (typeof text !== 'undefined') {
+    if (typeof text !== "undefined") {
       element.textContent = text;
     }
 
@@ -36,18 +36,18 @@
    * @return {HTMLElement} Card element.
    */
   function createLockedCard(card) {
-    var tile = createElement('button', 'card-tile card-locked');
+    var tile = createElement("button", "card-tile card-locked");
 
-    tile.type = 'button';
+    tile.type = "button";
 
-    tile.setAttribute('aria-label', card.number + '. kromoa desblokeatu');
+    tile.setAttribute("aria-label", card.number + ". kromoa desblokeatu");
 
-    tile.appendChild(createElement('span', 'card-number', String(card.number)));
+    tile.appendChild(createElement("span", "card-number", String(card.number)));
 
-    tile.appendChild(createElement('span', 'card-question', '?'));
+    tile.appendChild(createElement("span", "card-question", "?"));
 
     tile.appendChild(
-      createElement('span', 'card-unlock-button', 'Desblokeatu'),
+      createElement("span", "card-unlock-button", "Desblokeatu")
     );
 
     tile.onclick = function () {
@@ -66,15 +66,15 @@
    * @return {HTMLElement} Card element.
    */
   function createUnlockedCard(card) {
-    var tile = createElement('button', 'card-tile card-unlocked');
+    var tile = createElement("button", "card-tile card-unlocked");
 
-    var image = createElement('img', 'card-image');
+    var image = createElement("img", "card-image");
 
-    var fallback = createElement('span', 'card-image-fallback', card.name);
+    var fallback = createElement("span", "card-image-fallback", card.name);
 
-    tile.type = 'button';
+    tile.type = "button";
 
-    tile.setAttribute('aria-label', card.name);
+    tile.setAttribute("aria-label", card.name);
 
     image.alt = card.name;
     image.draggable = false;
@@ -121,19 +121,19 @@
 
     tileWidth = Math.max(1, Math.floor(tileHeight * 0.7));
 
-    board.style.width = columns * (tileWidth + 8) + 'px';
+    board.style.width = columns * (tileWidth + 8) + "px";
 
-    rows = board.getElementsByClassName('collection-row');
+    rows = board.getElementsByClassName("collection-row");
 
     for (i = 0; i < rows.length; i++) {
-      rows[i].style.height = rowHeight + 'px';
+      rows[i].style.height = rowHeight + "px";
     }
 
-    tiles = board.getElementsByClassName('card-tile');
+    tiles = board.getElementsByClassName("card-tile");
 
     for (i = 0; i < tiles.length; i++) {
-      tiles[i].style.width = tileWidth + 'px';
-      tiles[i].style.height = tileHeight + 'px';
+      tiles[i].style.width = tileWidth + "px";
+      tiles[i].style.height = tileHeight + "px";
     }
   }
 
@@ -148,12 +148,12 @@
     var r;
     var c;
 
-    board.innerHTML = '';
+    board.innerHTML = "";
 
     columns = Math.ceil(cards.length / app.config.collectionRows);
 
     for (r = 0; r < app.config.collectionRows; r++) {
-      row = createElement('div', 'collection-row');
+      row = createElement("div", "collection-row");
 
       for (c = 0; c < columns; c++) {
         index = r * columns + c;
@@ -204,14 +204,14 @@
         if (cards[i].id === updatedCard.id) {
           cards[i] = updatedCard;
 
-          tiles = board.getElementsByClassName('card-tile');
+          tiles = board.getElementsByClassName("card-tile");
 
           if (tiles[i]) {
             tiles[i].parentNode.replaceChild(
               updatedCard.unlocked
                 ? createUnlockedCard(updatedCard)
                 : createLockedCard(updatedCard),
-              tiles[i],
+              tiles[i]
             );
 
             resize();
@@ -252,6 +252,6 @@
     /**
      * Recalculate the collection dimensions.
      */
-    resize: resize,
+    resize: resize
   };
 })(window.Kromoak);
