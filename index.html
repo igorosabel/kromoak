@@ -119,6 +119,153 @@
 
             </section>
 
+            <div id="card-modal"
+                 class="modal-overlay"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="unlock-title"
+                 tabindex="-1"
+                 hidden>
+
+                <div id="unlock-panel"
+                     class="modal-panel">
+
+                    <div class="safe-lock"
+                         aria-hidden="true"></div>
+
+                    <h2 id="unlock-title">Desblokeatu kromoa</h2>
+
+                    <p id="unlock-card-number"
+                       class="unlock-card-number"></p>
+
+                    <p class="modal-description">
+                        Sartu lau digituko kodea
+                    </p>
+
+                    <div id="code-display"
+                         class="code-display">
+                        <span class="code-digit">–</span>
+                        <span class="code-digit">–</span>
+                        <span class="code-digit">–</span>
+                        <span class="code-digit">–</span>
+                    </div>
+
+                    <div id="keypad"
+                         class="keypad">
+
+                        <button type="button"
+                                data-key="1">1</button>
+                        <button type="button"
+                                data-key="2">2</button>
+                        <button type="button"
+                                data-key="3">3</button>
+
+                        <button type="button"
+                                data-key="4">4</button>
+                        <button type="button"
+                                data-key="5">5</button>
+                        <button type="button"
+                                data-key="6">6</button>
+
+                        <button type="button"
+                                data-key="7">7</button>
+                        <button type="button"
+                                data-key="8">8</button>
+                        <button type="button"
+                                data-key="9">9</button>
+
+                        <button type="button"
+                                data-key="clear"
+                                class="keypad-special"
+                                aria-label="Garbitu">
+                            C
+                        </button>
+
+                        <button type="button"
+                                data-key="0">0</button>
+
+                        <button type="button"
+                                data-key="delete"
+                                class="keypad-special"
+                                aria-label="Ezabatu">
+                            &#9003;
+                        </button>
+
+                    </div>
+
+                    <p id="unlock-message"
+                       class="modal-message"
+                       role="status"></p>
+
+                    <div id="unlock-countdown"
+                         class="unlock-countdown"
+                         hidden></div>
+
+                    <button id="unlock-submit-button"
+                            class="modal-primary-button"
+                            type="button"
+                            disabled>
+                        Desblokeatu
+                    </button>
+
+                    <button id="unlock-cancel-button"
+                            class="modal-secondary-button"
+                            type="button">
+                        Utzi
+                    </button>
+
+                </div>
+
+                <div id="image-panel"
+                     class="modal-panel image-panel"
+                     hidden>
+
+                    <div id="reveal-lock"
+                         class="safe-lock safe-lock-open"
+                         aria-hidden="true"
+                         hidden></div>
+
+                    <h2 id="image-title"></h2>
+
+                    <p id="image-name"
+                       class="modal-description"
+                       hidden></p>
+
+                    <p id="image-message"
+                       class="modal-message"
+                       role="status"></p>
+
+                    <img id="modal-card-image"
+                         class="modal-card-image"
+                         alt=""
+                         draggable="false"
+                         hidden>
+
+                    <div id="collection-celebration"
+                         class="collection-celebration"
+                         hidden>
+
+                        <div class="celebration-stars"
+                             aria-hidden="true">
+                            ✦ ★ ✦ ★ ✦
+                        </div>
+
+                        <p>Zorionak!</p>
+
+                        <span>Kromo guztiak lortu dituzu!</span>
+
+                    </div>
+
+                    <button id="image-close-button"
+                            class="modal-primary-button"
+                            type="button">
+                        Itxi
+                    </button>
+
+                </div>
+
+            </div>
+
         </main>
 
         <noscript>
@@ -128,6 +275,8 @@
         <script src="js/config.js"></script>
         <script src="js/api.js"></script>
         <script src="js/collection.js"></script>
+        <script src="js/keypad.js"></script>
+        <script src="js/modal.js"></script>
         <script src="js/app.js"></script>
     </body>
 

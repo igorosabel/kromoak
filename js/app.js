@@ -192,15 +192,45 @@
   }
 
   /**
-   * Handle selection of a locked or unlocked card.
-   * The corresponding dialogs will be connected later.
+   * Open the unlock dialog or the large card image.
    *
    * @param {Object} card Selected card.
    */
   function selectCard(card) {
-    collectionMessage.textContent = card.unlocked
-      ? card.name
-      : card.number + ". kromoa";
+    var user;
+    var currentRequest;
+
+    if (selectedUser === null) {
+      return;
+    }
+
+    if (card.unlocked) {
+      app.modal.openImage(card);
+      return;
+    }
+
+    user = selectedUser;
+    currentRequest = requestId;
+
+    app.modal.openUnlock(user.id, card, function (updatedCard) {
+      var total;
+
+      if (
+        selectedUser === null ||
+        selectedUser.id !== user.id ||
+        currentRequest !== requestId
+      ) {
+        return false;
+      }
+
+      app.collection.updateCard(updatedCard);
+
+      updateProgress();
+
+      total = app.collection.getTotalCount();
+
+      return total > 0 && app.collection.getUnlockedCount() === total;
+    });
   }
 
   /**
